@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>塾生ログイン | 鉄緑会</title>
+    <style>
+        body {
+            font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif;
+            background-color: #f4f6f9;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .login-container {
+            background-color: #ffffff;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 400px;
+            box-sizing: border-box;
+        }
+        .logo {
+            text-align: center;
+            font-size: 24px;
+            font-weight: bold;
+            color: #003366; /* 鉄緑会をイメージした濃紺 */
+            margin-bottom: 30px;
+            letter-spacing: 2px;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 14px;
+            color: #333333;
+            font-weight: bold;
+        }
+        .form-group input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #cccccc;
+            border-radius: 4px;
+            font-size: 16px;
+            box-sizing: border-box;
+            transition: border-color 0.3s;
+        }
+        .form-group input:focus {
+            border-color: #003366;
+            outline: none;
+        }
+        .btn-login {
+            width: 100%;
+            padding: 14px;
+            background-color: #003366;
+            color: #ffffff;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .btn-login:hover {
+            background-color: #002244;
+        }
+        .error-message {
+            color: #ff3333;
+            font-size: 14px;
+            margin-top: 15px;
+            text-align: center;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+<div class="login-container">
+    <div class="logo">鉄緑会 塾生ログイン</div>
+    
+    <form id="loginForm" onsubmit="return validateLogin(event)">
+        <div class="form-group">
+            <label id="label-student-id" for="studentId">塾生番号</label>
+            <input type="text" id="studentId" placeholder="塾生番号を入力" required autocomplete="username">
+        </div>
+        
+        <div class="form-group">
+            <label id="label-password" for="password">パスワード</label>
+            <input type="password" id="password" placeholder="パスワードを入力" required autocomplete="current-password">
+        </div>
+        
+        <button type="submit" class="btn-login">ログイン</button>
+        
+        <div id="errorMessage" class="error-message">塾生番号またはパスワードが正しくありません。</div>
+    </form>
+</div>
+
+<script>
+    function validateLogin(event) {
+        // フォームのデフォルトの送信挙動をキャンセル
+        event.preventDefault();
+        
+        const studentIdInput = document.getElementById('studentId').value;
+        const passwordInput = document.getElementById('password').value;
+        const errorMessage = document.getElementById('errorMessage');
+        
+        // 正解の資格情報
+        const correctId = "ihsr2730";
+        const correctPassword = "etf20064";
+        const targetUrl = "https://ooo";
+        
+        if (studentIdInput === correctId && passwordInput === correctPassword) {
+            errorMessage.style.display = 'none';
+            // 指定のURLへリダイレクト
+            window.location.href = targetUrl;
+        } else {
+            // エラーメッセージを表示
+            errorMessage.style.display = 'block';
+        }
+    }
+</script>
+
+</body>
+</html>
